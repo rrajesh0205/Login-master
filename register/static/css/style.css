@@ -317,7 +317,7 @@ header {
   header .colorlib-navbar-brand {
     float: right; }
     header .colorlib-navbar-brand .colorlib-logo {
-      margin-right: -500px;
+      margin-right: -100px;
       font-size: 24px;
       text-transform: uppercase;
       color: #000;
@@ -552,7 +552,7 @@ header {
 
 .bold {
 	
-margin-top: 200px;
+margin-top: 75px;
   position: absolute;
   top: 0;
   left: 0;
@@ -1055,7 +1055,7 @@ margin-left: 160px;
       top: 0px; } }
 
 .contact-info {
-  margin-top: 200px;
+  margin-top: 100px;
   padding: 0; }
   .contact-info li {
     list-style: none;
@@ -1084,7 +1084,7 @@ margin-left: 160px;
       color: #000; }
 
 .form-control {
-	margin-top: 200px;
+	margin-top: 75px;
 	margin-left: 160px;
   -webkit-box-shadow: none;
   -moz-box-shadow: none;
