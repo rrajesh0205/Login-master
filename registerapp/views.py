@@ -10,6 +10,8 @@ from django.shortcuts import render, redirect
 
 
 # Create your views here.
+
+
 def index(request):
     return render(request, 'index.html')
 
@@ -21,7 +23,11 @@ def test(request):
 def testnew(request):
     return render(request, 'testnew.html')
 
-    
+
+def created(request):
+    return render(request, 'created.html')
+
+
 def logout(request):
     auth.logout(request)
     return redirect('test')
@@ -86,21 +92,25 @@ class CreatePostView(CreateView):  # new
     model = Article
     form_class = PostForm
     template_name = 'create.html'
-    success_url = reverse_lazy('test')
+    success_url = reverse_lazy('created')
 
 
 class ArticleUpdate(UpdateView):
     model = Article
     form_class = PostForm
     template_name = 'create.html'
-    success_url = reverse_lazy('home')
+    success_url = reverse_lazy('created')
 
 
 class ArticleDelete(DeleteView):
     model = Article
     template_name = 'delete.html'
-    success_url = reverse_lazy('home')
+    success_url = reverse_lazy('test')
+
 
 class ArticleAboutView(ListView):
     model = Article
     template_name = 'about.html'
+
+
+
