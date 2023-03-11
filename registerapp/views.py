@@ -69,7 +69,8 @@ def register(request):
             return redirect('register')
         return redirect('/')
     else:
-        return render(request,'register.html')    
+        return render(request, 'register.html')    
+    
 
 class ArticleListView(ListView):
     model = Article
@@ -85,7 +86,7 @@ class CreatePostView(CreateView):  # new
     model = Article
     form_class = PostForm
     template_name = 'create.html'
-    success_url = reverse_lazy('home')
+    success_url = reverse_lazy('test')
 
 
 class ArticleUpdate(UpdateView):
@@ -93,6 +94,7 @@ class ArticleUpdate(UpdateView):
     form_class = PostForm
     template_name = 'create.html'
     success_url = reverse_lazy('home')
+
 
 class ArticleDelete(DeleteView):
     model = Article
