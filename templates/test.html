@@ -1,31 +1,123 @@
+{% extends 'base.html' %}
+{% block content %}
 {% load static %}
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <link href="{% static 'css/styletest.css' %}" rel="stylesheet">
-    <title>Output</title>
-</head>
+<header>
+<nav>
+    <!--
+<div class="topnav">
+    <a class="active" style="pointer-events: none; display:" href='/'>Home</a>
+    <a href='create/'>Create</a> 
+</div>
+-->
+</nav>
+<div class="myDiv">
+    <a href='/'>My Blog</a>
+    <div class="myDiv1">
+        <center>.</center>
+    </div>
+</div>
 
-<body>
-    {% if user.is_authenticated %}
-        <div class="father">
-            Welcome<span>,</span>
-            <b>{{user.first_name}}<span>.</span></b> &nbsp; </br>
-        </div>
+</header>    
+<br>
+<!-- 
+<div class="myDiv">
+    <a href="/">My Blog</a>
+</div>
+-->
 
-        <div class="child">
-            <a href='logout'>Logout<span>.</span></a>
+<!--    Made by Erik Terwan    -->
+<!--   24th of November 2015   -->
+<!--        MIT License        -->
+
+<nav role="navigation">
+  <div id="menuToggle">
+    <!-
+    A fake / hidden checkbox is used as click reciever,
+    so you can use the :checked selector on it.
+    -->
+
+    <input type="checkbox" />
+    
+    <!-
+    Some spans to act as a hamburger.
+    
+    They are acting like a real hamburger,
+    not that McDonalds stuff.
+    -->
+
+    <span></span>
+    <span></span>
+    <span></span>
+    
+    <!-
+    Too bad the menu has to be inside of the button
+    but hey, it's pure CSS magic.
+    -->
+
+    <ul id="menu">
+      <a href='/'>
+          <li>Home</li>
+      </a>
+      <a href='create'>
+          <li>Create</li>
+      </a>
+      <a href='about'>
+          <li>Contact</li>
+      </a>
+    </ul>
+  </div>
+</nav>
+<br>
+
+<button class="my_bttn">
+    <i class="fa fa-arrow-up"></i>
+</button>
+
+<div class="container">
+    {% for article in object_list|dictsortreversed:"created_at" %}
+        <div class="article">
+            <div class="modmenu">
+                <a href="{% url 'article_edit' article.pk %}" class="tooltipedit"> <span>Edit</span>
+                <img src="{% static 'edit.png' %}" width = "16" height = "16"/></a>
+                    &nbsp;&nbsp;&nbsp;&nbsp;
+                <a href="{% url 'delete' article.pk %}" class="tooltipdelete" ><span>Delete</span>
+                <img src="{% static 'trash.png' %}" width = "16" height = "16"/></a>
+                &nbsp;&nbsp;
+            </div>           
+            <div class="artbody">
+                <a href="{% url 'detail' article.pk %}">{{ article.title }}</a>
+            </div>
+            <br>
+            <div class="artbody_new">
+                {{ article.body }}
+            </div>
+            <br>
+            <br>
+                
+            {% if article.img.url != Null %}
+                <center> <div class="imagediv">
+                    <a href={{article.img.url}} data-fancybox data-caption="..">
+	                <img class='pop' src={{article.img.url}} alt="" />
+                    </a>
+                    
+                </center>
+            {% endif %}
+            <br>
+            <br>
+            <div class="article1">
+                &nbsp;Dated:
+                {{ article.created_at }}
+                <br>
+                {% if article.updated_at != article.created_at %}
+                    Update:&nbsp;{{ article.updated_at }}
+                {% endif %}
+            </div>
         </div>
-        
-    {% else %}
-        <div class="father">
-            <a href='/'>Login<span>.</span></a> 
-        </div>
-        
-        <div class="child">
-            <a href='register'>Register<span>.</span></a>
-        </div>
-    {% endif %}
-</body>
-</html>
+    <br>
+  {% endfor %}
+  <br>
+</div>
+
+{% endblock %}
+
+
