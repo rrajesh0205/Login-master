@@ -7,14 +7,19 @@ from django.contrib import messages
 def index(request):
     return render(request, 'index.html')
 
+
 def test(request):
     return render(request, 'test.html')
 
-    
 
+def testnew(request):
+    return render(request, 'testnew.html')
+
+    
 def logout(request):
     auth.logout(request)
     return redirect('test')
+
 
 def login(request):
     if request.method == 'POST':
@@ -28,9 +33,9 @@ def login(request):
                 return redirect("test")
         else:
             messages.info(request, 'Invalid Credentials')
-            return redirect('login')
+            return redirect('testnew')
     else:
-        return render(request, 'index.html')
+        return render(request, 'testnew.html')
 
 def register(request):
     if request.method == 'POST':
