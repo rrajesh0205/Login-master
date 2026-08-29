@@ -30,7 +30,7 @@ def created(request):
 
 def logout(request):
     auth.logout(request)
-    return redirect('test')
+    return redirect('index')
 
 
 def login(request):
@@ -42,7 +42,7 @@ def login(request):
         if user is not None:
                 auth.login(request,user)
                 messages.info(request, 'Logged In...')
-                return redirect("test")
+                return redirect("testnew")
         else:
             messages.info(request, 'Invalid Credentials')
             return redirect('testnew')
