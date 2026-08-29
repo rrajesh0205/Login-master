@@ -23,6 +23,8 @@ def test(request):
 def testnew(request):
     return render(request, 'testnew.html')
 
+def create(request):
+    return render(request, 'create.html')
 
 def created(request):
     return render(request, 'created.html')
