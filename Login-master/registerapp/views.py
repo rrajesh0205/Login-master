@@ -10,7 +10,8 @@ def index(request):
 def test(request):
     return render(request, 'test.html')
 
-    
+def created(request):
+    return render(request, 'created.html')
 
 def logout(request):
     auth.logout(request)
@@ -52,7 +53,7 @@ def register(request):
                 user = User.objects.create_user(first_name=first_name, last_name=last_name, username=username,  password=password1, email=email)
                 user.save()
                 messages.info(request, 'User created. Please Login to Continue...')
-                return redirect('index')
+                return redirect('created')
         else:
             print("The Passwords are not matching")
             return redirect('register')
