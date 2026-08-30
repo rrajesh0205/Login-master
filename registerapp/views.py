@@ -20,14 +20,17 @@ def test(request):
     return render(request, 'test.html')
 
 
-def testnew(request):
-    return render(request, 'testnew.html')
+def welcome(request):
+    return render(request, 'welcome.html')
 
 def create(request):
     return render(request, 'create.html')
 
 def created(request):
     return render(request, 'created.html')
+
+def invalid(request):
+    return render(request, 'invalid.html')
 
 
 def logout(request):
@@ -44,12 +47,12 @@ def login(request):
         if user is not None:
                 auth.login(request,user)
                 messages.info(request, 'Logged In...')
-                return redirect("testnew")
+                return redirect("welcome")
         else:
             messages.info(request, 'Invalid Credentials')
-            return redirect('testnew')
+            return redirect('invalid')
     else:
-        return render(request, 'testnew.html')
+        return render(request, 'invalid.html')
 
 def register(request):
     if request.method == 'POST':
@@ -94,7 +97,7 @@ class CreatePostView(CreateView):  # new
     model = Article
     form_class = PostForm
     template_name = 'create.html'
-    success_url = reverse_lazy('created')
+    success_url = reverse_lazy('test')
 
 
 class ArticleUpdate(UpdateView):
